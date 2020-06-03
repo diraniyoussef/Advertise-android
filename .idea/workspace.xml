@@ -18,7 +18,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="AVD_for_Nexus_5_by_Google" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="NB1GAD17B0302084" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -207,22 +207,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590731375993" />
-    <state width="1323" height="280" key="GridCell.Tab.0.bottom" timestamp="1591090004381">
+    <state width="1323" height="280" key="GridCell.Tab.0.bottom" timestamp="1591159089435">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="280" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591090004381" />
-    <state width="1323" height="280" key="GridCell.Tab.0.center" timestamp="1591090004381">
+    <state width="1323" height="280" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591159089435" />
+    <state width="1323" height="280" key="GridCell.Tab.0.center" timestamp="1591159089435">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="280" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591090004381" />
-    <state width="1323" height="280" key="GridCell.Tab.0.left" timestamp="1591090004380">
+    <state width="1323" height="280" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591159089435" />
+    <state width="1323" height="280" key="GridCell.Tab.0.left" timestamp="1591159089435">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="280" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591090004380" />
-    <state width="1323" height="280" key="GridCell.Tab.0.right" timestamp="1591090004381">
+    <state width="1323" height="280" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591159089435" />
+    <state width="1323" height="280" key="GridCell.Tab.0.right" timestamp="1591159089435">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="280" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591090004381" />
+    <state width="1323" height="280" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591159089435" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1590842521505">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
