@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--for some reason, android:visible="false" doesn't work neither for the whole group, nor for a particular item.
+    I'm removing some items programmatically.
+    -->
+    <group android:id="@+id/bottombar_menuitems"
+        android:orderInCategory="0">
+        <item
+            android:id="@+id/navigation_bottom_1"
+            android:icon="@drawable/ic_no_icon"
+            android:title="option 1"
+            android:orderInCategory="1"
+            app:showAsAction="ifRoom" />
+
+        <item
+            android:id="@+id/navigation_bottom_2"
+            android:icon="@drawable/ic_pets_black_24dp"
+            android:title="option 2"
+            android:orderInCategory="2"
+            app:showAsAction="ifRoom"/>
+
+        <item
+            android:id="@+id/navigation_bottom_3"
+            android:icon="@drawable/ic_weekend_black_24dp"
+            app:showAsAction="ifRoom"
+            android:orderInCategory="3"
+            android:title="option 3" />
+
+        <item
+            android:id="@+id/navigation_bottom_4"
+            android:icon="@drawable/ic_touch_app_black_24dp"
+            android:title="option 4"
+            android:orderInCategory="4"
+            app:showAsAction="ifRoom"/>
+        <!--
+        <item
+            android:id="@+id/navigation_bottom_5"
+            android:title="option 5"
+            app:showAsAction="ifRoom"/>
+        <item
+            android:id="@+id/navigation_bottom_6"
+            app:showAsAction="ifRoom"
+            android:title="option 3" />
+        <item
+            android:id="@+id/navigation_bottom_7"
+            android:title="option 4"
+            app:showAsAction="ifRoom"/>
+        <item
+            android:id="@+id/navigation_bottom_8"
+            android:title="option 5"
+            app:showAsAction="ifRoom"/>
+        <item
+            android:id="@+id/navigation_bottom_9"
+            app:showAsAction="ifRoom"
+            android:title="option 3" />
+        <item
+            android:id="@+id/navigation_bottom_10"
+            android:title="option 4"
+            app:showAsAction="ifRoom"/>
+        <item
+            android:id="@+id/navigation_bottom_11"
+            android:title="option 5"
+            app:showAsAction="ifRoom"/>
+            -->
+    </group>
+</menu>

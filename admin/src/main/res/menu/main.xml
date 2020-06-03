@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <group
+        android:id="@+id/optionsmenu_actionitemgroup">
+
+        <item
+            android:id="@+id/homenavigationitem_mainmenuitem"
+            android:visible="false"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/home_title"
+            app:showAsAction="ifRoom" />
+        <!--
+            android:name="com.youssefdirani.navmenu_admin.ui.HomeFragment"
+            tools:layout="@layout/fragment_home"
+            These 2 didn't work. They don't belong here anyway-->
+        <item
+            android:id="@+id/refresh_mainmenuitem"
+            android:icon="@drawable/ic_refresh_black_24dp"
+            android:title="@string/refresh_data"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/statusbar_actionmenu"
+            android:title="Status Bar (admin)"
+            app:showAsAction="never" >
+            <!--android:orderInCategory="100"-->
+            <menu>
+                <item
+                    android:id="@+id/statusbar_color"
+                    android:icon="@drawable/ic_format_paint_black_24dp"
+                    android:title="Assign Background Color" />
+                <item
+                    android:id="@+id/statusbar_icontint"
+                    android:icon="@drawable/ic_star_half_black_24dp"
+                    android:checkable="true"
+                    android:checked="false"
+                    android:title="Icons Tint Dark" />
+            </menu>
+        </item>
+        <item
+            android:id="@+id/topbar_actionmenu"
+            android:title="Top Bar (admin)"
+            app:showAsAction="never" >
+            <!--android:orderInCategory="100"-->
+            <menu>
+                <item
+                    android:id="@+id/topbar_backgroundcolor"
+                    android:icon="@drawable/ic_format_paint_black_24dp"
+                    android:title="Assign Background Color" />
+                <item
+                    android:id="@+id/topbar_hamburgercolor"
+                    android:icon="@drawable/ic_menu_black_24dp"
+                    android:title="Assign Hamburger Color" />
+                <item
+                    android:id="@+id/topbar_titlecolor"
+                    android:icon="@drawable/ic_format_color_text_black_24dp"
+                    android:title="Assign Title Color" />
+                <item
+                    android:id="@+id/topbar_3dotscolor"
+                    android:icon="@drawable/ic_more_vert_black_24dp"
+                    android:title="Assign 3-dots Color" />
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/bottombar_actionmenu"
+            android:title="Bottom Bar (admin)"
+            app:showAsAction="never" >
+            <!--android:orderInCategory="100"-->
+            <menu>
+                <item
+                    android:id="@+id/bottombar_add"
+                    android:icon="@android:drawable/ic_menu_add"
+                    android:title="Add Bar" />
+                <group
+                    android:id="@+id/bottombar_exists">
+                    <item
+                        android:id="@+id/bottombar_remove"
+                        android:icon="@android:drawable/ic_menu_delete"
+                        android:title="Delete Bar" />
+                    <item
+                        android:id="@+id/bottombar_color"
+                        android:icon="@drawable/ic_format_paint_black_24dp"
+                        android:title="Background Color" />
+                    <item
+                        android:id="@+id/bottombar_addtab"
+                        android:icon="@android:drawable/ic_menu_add"
+                        android:title="Add Tab" />
+                    <item
+                        android:id="@+id/bottombar_menuicon"
+                        android:icon="@drawable/ic_tag_faces_black_24dp"
+                        android:title="@string/chooseicon_submenu" />
+                    <item
+                        android:id="@+id/bottombar_renametab"
+                        android:icon="@android:drawable/ic_menu_edit"
+                        android:title="Rename Tab" />
+                    <item
+                        android:id="@+id/bottombar_deletetab"
+                        android:icon="@android:drawable/ic_menu_delete"
+                        android:title="Delete Tab" />
+                    <item
+                        android:id="@+id/bottombar_movetabright"
+                        android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:title="Move Tab Right" />
+                    <item
+                        android:id="@+id/bottombar_movetableft"
+                        android:icon="@drawable/ic_navigate_before_black_24dp"
+                        android:title="Move Tab Left" />
+                </group>
+            </menu>
+        </item>
+    </group>
+        <item
+            android:id="@+id/termsandconditions_menuitem"
+            android:title="@string/termsandconditions_admin"
+            app:showAsAction="never" />
+
+
+</menu>

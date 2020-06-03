@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home"> <!--app:startDestination="@id/nav_home" startDestination is really the first appearing fragment when the app starts-->
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.youssefdirani.advertise_admin.ui.HomeFragment"
+        android:tag="home fragment tag"
+        android:label="@string/home_title" />
+    <fragment
+        android:id="@+id/nav_fragment1"
+        android:name="com.youssefdirani.advertise_admin.ui.HomeFragment"
+        android:label="@string/home_title" />
+    <fragment
+        android:id="@+id/nav_fragment2"
+        android:name="com.youssefdirani.advertise_admin.ui.HomeFragment"
+        android:label="@string/home_title" />
+    <fragment
+        android:id="@+id/nav_fragment3"
+        android:name="com.youssefdirani.advertise_admin.ui.HomeFragment"
+        android:label="@string/home_title" />
+    <fragment
+        android:id="@+id/nav_fragment4"
+        android:name="com.youssefdirani.advertise_admin.ui.HomeFragment"
+        android:label="@string/home_title" />
+    <fragment
+        android:id="@+id/nav_fragment5"
+        android:name="com.youssefdirani.advertise_admin.ui.HomeFragment"
+        android:label="@string/home_title" />
+
+    <fragment
+        android:id="@+id/nav_menuicon"
+        android:name="com.youssefdirani.advertise_admin.ui.ChooseMenuIconFragment"
+        android:label="@string/chooseicon_title" />
+    <!--tools:layout="@layout/fragment_2"-->
+    <fragment
+        android:id="@+id/nav_color"
+        android:name="com.youssefdirani.advertise_admin.ui.ChooseColorFragment"
+        android:label="@string/choosecolor_title" />
+
+</navigation>

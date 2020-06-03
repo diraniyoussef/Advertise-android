@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:columnCount="4"
+            android:padding="20dp">
+            <ImageButton
+                android:id="@+id/imagebutton_cardview_dark_background"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="cardview_dark_background"
+                app:srcCompat="@color/cardview_dark_background" />
+            <ImageButton
+                android:id="@+id/imagebutton_cardview_shadow_start_color"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="cardview_shadow_start_color"
+                app:srcCompat="@color/cardview_shadow_start_color" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorAccent"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorAccent"
+                app:srcCompat="@color/colorAccent" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorPrimaryDark"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorPrimaryDark"
+                app:srcCompat="@color/colorPrimaryDark" />
+            <ImageButton
+                android:id="@+id/imagebutton_design_default_color_error"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="design_default_color_error"
+                app:srcCompat="@color/design_default_color_error" />
+            <ImageButton
+                android:id="@+id/imagebutton_design_default_color_primary"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="design_default_color_primary"
+                app:srcCompat="@color/design_default_color_primary" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorBlack"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorBlack"
+                app:srcCompat="@color/colorBlack" />
+            <ImageButton
+                android:id="@+id/imagebutton_design_default_color_secondary_variant"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="design_default_color_secondary_variant"
+                app:srcCompat="@color/design_default_color_secondary_variant" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorViolet"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorViolet"
+                app:srcCompat="@color/colorViolet" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorGreen"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorGreen"
+                app:srcCompat="@color/colorGreen" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorGray"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorGray"
+                app:srcCompat="@color/colorGray" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorYellowLight"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorYellowLight"
+                app:srcCompat="@color/colorYellowLight" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorWhite"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorWhite"
+                app:srcCompat="@color/colorWhite" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorBrown"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorBrown"
+                app:srcCompat="@color/colorBrown" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorSwamp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorSwamp"
+                app:srcCompat="@color/colorSwamp" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorSkyBlue"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorSkyBlue"
+                app:srcCompat="@color/colorSkyBlue" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorRedWine"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorRedWine"
+                app:srcCompat="@color/colorRedWine" />
+            <ImageButton
+                android:id="@+id/imagebutton_colorPurple"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:tag="colorPurple"
+                app:srcCompat="@color/colorPurple" />
+
+        </GridLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

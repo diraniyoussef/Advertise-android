@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group
+        android:id="@+id/main_drawer_group"
+        android:orderInCategory="0"
+        >
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_action_home"
+            android:title="@string/home_title"
+            android:orderInCategory="1"
+            />
+        <!--app:showAsAction="always" didn't work-->
+    </group>
+    <item
+        android:id="@+id/navforadmin_menuitem"
+        android:orderInCategory="100000"
+        android:title="(admin)">
+        <!--better orderInCategory be large enough. Anyway...-->
+        <menu>
+            <item
+                android:id="@+id/nav_color"
+                android:icon="@drawable/ic_format_paint_black_24dp"
+                android:title="Assign Background Color" />
+            <item
+                android:id="@+id/nav_addnewitem"
+                android:icon="@android:drawable/ic_menu_add"
+                android:title="@string/newitem_submenu" />
+            <item
+                android:id="@+id/nav_menuicon"
+                android:icon="@drawable/ic_tag_faces_black_24dp"
+                android:title="@string/chooseicon_submenu" />
+            <item
+                android:id="@+id/nav_renameitem"
+                android:icon="@android:drawable/ic_menu_edit"
+                android:title="@string/rename_submenu"
+                />
+            <!--android:orderInCategory="100"
+            app:showAsAction="never"-->
+            <item
+                android:id="@+id/nav_deleteitem"
+                android:icon="@android:drawable/ic_menu_delete"
+                android:title="@string/delete_submenu" />
+            <!--icon may not show by default
+            https://stackoverflow.com/questions/19750635/icon-in-menu-not-showing-in-android-->
+            <item
+                android:id="@+id/nav_moveupitem"
+                android:icon="@drawable/ic_arrow_upward_black_24dp"
+                android:title="@string/moveup_setting" />
+            <item
+                android:id="@+id/nav_movedownitem"
+                android:icon="@drawable/ic_arrow_downward_black_24dp"
+                android:title="@string/movedown_setting" />
+        </menu>
+    </item>
+</menu>
