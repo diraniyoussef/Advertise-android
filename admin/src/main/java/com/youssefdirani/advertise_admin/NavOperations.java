@@ -24,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.youssefdirani.advertise_admin.db.NavEntity;
 
 import java.io.File;
 import java.io.FileNotFoundException;

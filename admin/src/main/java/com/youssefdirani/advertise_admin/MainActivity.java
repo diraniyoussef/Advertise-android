@@ -1,6 +1,5 @@
 package com.youssefdirani.advertise_admin;
 
-import android.app.ActivityManager;
 import android.content.ComponentCallbacks2;
 import android.content.Intent;
 import android.graphics.PorterDuff;

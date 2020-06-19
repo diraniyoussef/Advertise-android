@@ -16,6 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.youssefdirani.advertise_admin.db.AppDatabase;
+import com.youssefdirani.advertise_admin.db.DatabaseInfo;
+import com.youssefdirani.advertise_admin.db.DatabaseLastUpdate;
+import com.youssefdirani.advertise_admin.db.NavEntity;
+import com.youssefdirani.advertise_admin.db.NavHeaderEntity;
+import com.youssefdirani.advertise_admin.db.PermanentDao;
+import com.youssefdirani.advertise_admin.db.TableLastUpdate;
 
 import java.io.File;
 import java.util.Date;
@@ -27,11 +34,16 @@ import androidx.sqlite.db.SupportSQLiteOpenHelper;
 
 class DbOperations {
     private MainActivity activity;
+    private AppDatabase db_room;
+    private PermanentDao permanentDao;
+    private SupportSQLiteDatabase db; //https://developer.android.com/reference/androidx/sqlite/db/SupportSQLiteDatabase
+    ConnectToServer connectToServer;
 
-    DbOperations(MainActivity activity ) {
+    DbOperations( MainActivity activity ) {
         this.activity = activity;
         db_room = Room.databaseBuilder( activity, AppDatabase.class, "my_db" ).build();
         permanentDao = db_room.permanentDao();
+        connectToServer = new ConnectToServer( activity, this );
     }
 
     void addNavRecord( final String title ) {
@@ -283,15 +295,16 @@ class DbOperations {
                     if( cursor_left.moveToNext() && cursor_right.moveToNext() ) { //checking in an "if" is not needed, but it's ok
                         final String leftBottomNavTitle = cursor_left.getString( cursor_left.getColumnIndex("title") );
                         final String leftBottomNavIcon = cursor_left.getString( cursor_left.getColumnIndex("icon") );
-                        final String rightBottomNavTitle = cursor_right.getString( cursor_left.getColumnIndex("title") );
-                        final String rightBottomNavIcon = cursor_right.getString( cursor_left.getColumnIndex("icon") );
+                        final String rightBottomNavTitle = cursor_right.getString( cursor_right.getColumnIndex("title") );
+                        final String rightBottomNavIcon = cursor_right.getString( cursor_right.getColumnIndex("icon") );
                         //I won't check, but they all must be non-null
                         ContentValues contentValues = new ContentValues();
                         //contentValues.put( "uid", 0);
                         contentValues.put( "title", leftBottomNavTitle);
                         //contentValues.put( "index1", 0 );
                         contentValues.put( "icon", leftBottomNavIcon );
-                        int rowsUpdated = db.update( bottomBarTableName, SQLiteDatabase.CONFLICT_NONE, contentValues, "index1 = ?", //don't say "WHERE" before "index1 = ?", it's already there
+                        //usually it's      int rowsUpdated = db.update(...
+                        db.update( bottomBarTableName, SQLiteDatabase.CONFLICT_NONE, contentValues, "index1 = ?", //don't say "WHERE" before "index1 = ?", it's already there
                                 new String[]{ String.valueOf( oldRightItemOrder ) } );
                         insertOrUpdate_TableLastUpdate( bottomBarTableName, false );
                         //if( rowsUpdated == 0 ) {//must not happen
@@ -300,7 +313,7 @@ class DbOperations {
                         contentValues.put( "title", rightBottomNavTitle);
                         //contentValues.put( "index1", 0 );
                         contentValues.put( "icon", rightBottomNavIcon );
-                        rowsUpdated = db.update( bottomBarTableName, SQLiteDatabase.CONFLICT_NONE, contentValues, "index1 = ?", //don't say "WHERE" before "index1 = ?", it's already there
+                        db.update( bottomBarTableName, SQLiteDatabase.CONFLICT_NONE, contentValues, "index1 = ?", //don't say "WHERE" before "index1 = ?", it's already there
                                 new String[]{ String.valueOf( oldRightItemOrder - 1 ) } );
                         insertOrUpdate_TableLastUpdate( bottomBarTableName, false );
                     } //must not have an else
@@ -333,10 +346,6 @@ class DbOperations {
     void onDestroy() {
         db_room.close(); //should not be called onStop, otherwise when we go the activity of choosing an image from gallery, this will be called and this hurts the consistency of the app.
     }
-
-    private AppDatabase db_room;
-    private PermanentDao permanentDao;
-    private SupportSQLiteDatabase db; //https://developer.android.com/reference/androidx/sqlite/db/SupportSQLiteDatabase
 
     private String generateBbTableName( int navIndex ) {
         return "bb_" + navIndex;
@@ -426,7 +435,29 @@ class DbOperations {
         loadTopTitleColor( navIndex );
         Log.i("loadOnNavigate", "before loadTop3DotsColor");
         loadTop3DotsColor( navIndex );
+        listAllTables();
         Looper.loop();
+    }
+
+    void listAllTables() { //for diagnosis purposes
+        //Cursor cursor_bb = db2.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+        Cursor cursor_bb = db.query("SELECT name FROM sqlite_master WHERE type='table'");
+        if( cursor_bb.getCount() > 0 ) {
+            Log.i("listall", "from db, fetching tables.");
+            while( cursor_bb.moveToNext() ) {
+                //Log.i("listall", "column count is " + cursor_bb.getColumnCount() );
+                //Log.i("listall", "number of tables is " + cursor_bb.getCount() );
+
+                Log.i("listall", "table name is " +
+                        //cursor_bb.getString( cursor_bb.getColumnIndex("name") ) );
+                        cursor_bb.getString( 0 ) );
+
+            }
+            cursor_bb.close();
+        } else {
+            Log.i("listall", "from db, no table could had been able to be fetched.");
+        }
+
     }
 
     void loadBb( final int indexOfNavMenuItem, final boolean setAll ) {
@@ -625,12 +656,16 @@ class DbOperations {
     void onCreate() {
         new Thread() { //opening the database needs to be on a separate thread.
             public void run() {
-                //This is for the first time the admin uses the app
+                //These inserts are used for the first time the admin uses the app
                 insertDbInfo();
                 insertNavHeader();
                 insertNavEntity();
-                SupportSQLiteOpenHelper supportSQLiteOpenHelper = db_room.getOpenHelper(); //referring to the opened connection to the database. //very good explanation : https://stackoverflow.com/questions/17348480/how-do-i-prevent-sqlite-database-locks - related https://stackoverflow.com/questions/8104832/sqlite-simultaneous-reading-and-writing. And this is related as well https://www.sqlite.org/lockingv3.html
+                final SupportSQLiteOpenHelper supportSQLiteOpenHelper = db_room.getOpenHelper(); //referring to the opened connection to the database. //very good explanation : https://stackoverflow.com/questions/17348480/how-do-i-prevent-sqlite-database-locks - related https://stackoverflow.com/questions/8104832/sqlite-simultaneous-reading-and-writing. And this is related as well https://www.sqlite.org/lockingv3.html
                 db = supportSQLiteOpenHelper.getWritableDatabase(); //enableWriteAheadLogging() When write-ahead logging is not enabled (the default), it is not possible for reads and writes to occur on the database at the same time. https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase#create(android.database.sqlite.SQLiteDatabase.CursorFactory)
+                //BTW, calling db_room.getOpenHelper() will always return the same corresponding object and calling db_room.getOpenHelper().
+                db.enableWriteAheadLogging();//https://developer.android.com/reference/androidx/sqlite/db/SupportSQLiteDatabase#enableWriteAheadLogging()
+                connectToServer.setup();
+                connectToServer.start();
                 //It's better to make a mechanism that corrects itself in case of an error. I.e. make database tables coherent. But I will leave that for now. In case of an error, I believe the app won't crash and it will show something anyway, and for now it's up to the admin to correct whatever he wishes.
                 setFirstBottomNavContentTable(0);
                 //https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase#execSQL(java.lang.String,%20java.lang.Object[])
@@ -641,26 +676,13 @@ class DbOperations {
             private void insertDbInfo() {
                 Log.i("first time", "insertDbInfo");
                 DatabaseInfo databaseInfo = permanentDao.getDatabaseInfo();
-                if( databaseInfo == null ||
-                        ( databaseInfo.ownerName.equals("") || databaseInfo.ownerPhoneNumber.equals("") ) ) {
-                    Log.i("first time", "one of the 3.");
-                    if( databaseInfo == null ) {
-                        databaseInfo = new DatabaseInfo();
-                        databaseInfo.lastUpdate = new Date().getTime();
-                        databaseInfo.ownerName = ""; //my convention here
-                        databaseInfo.ownerPhoneNumber = "";//my convention here
-                        Log.i("first time", "" + databaseInfo.lastUpdate);
-                        permanentDao.insertDbInfoRecord( databaseInfo );
-                    } else {
-                        Log.i("first time", "not null it is !");
-                    }
+                if( databaseInfo == null ) {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            getNameAndPhoneNumber();
-                        }
+                        getNameAndPhoneNumber();
+                    }
                     });
-
                 }
             }
 
@@ -700,8 +722,8 @@ class DbOperations {
                                 if( databaseInfo != null ) { //always true
                                     databaseInfo.ownerName = nameOfUser;
                                     databaseInfo.ownerPhoneNumber = phoneOfUser;
-                                    Log.i("second time", "" + databaseInfo.lastUpdate);
-                                    permanentDao.updateDatabaseInfoRecord( databaseInfo );
+                                    permanentDao.insertDbInfoRecord( databaseInfo );
+                                    insertOrUpdate_TableLastUpdate("db_info", false );
                                 }
                             }
                         }.start();
@@ -780,7 +802,7 @@ class DbOperations {
                     navHeaderEntity = new NavHeaderEntity();
                     permanentDao.insertNavHeader( navHeaderEntity ); //it worked even without specifying anything in the just-created navHeaderEntity
                     insertOrUpdate_TableLastUpdate("nav_header", false);
-                } else {
+                //} else {
                     //Log.i("Youssef", "inside MainActivity : onStart. A nav header entity already exists.");
                     //I can't assign the UI here, not until all is inflated and so on.
                 }
@@ -951,18 +973,7 @@ class DbOperations {
             if( rowsUpdated == 0 ) {//must not happen
                 Log.i("setIcon", "failed to update");
             }
-/*
-            Cursor cursor_bb = db.query("SELECT 'uid' FROM '" + bottomBarTableName + "' WHERE index1 = ? ",
-                    new String[]{ String.valueOf(activity.bottomNavOperations.getCheckedItemOrder() ) } ); //'uid', 'title', 'index1', 'icon'
-            //SupportSQLiteQuery
-            if( cursor_bb.getCount() > 0 && cursor_bb.moveToNext() ) { //we have to find it
 
-                cursor_bb.getInt( cursor_bb.getColumnIndex("uid") )
-
-            } else {
-                Log.i("setIcon", "We haven't gotten the row instance");
-            }
- */
             db.setTransactionSuccessful(); //to commit
         } catch(Exception e) {
             Log.e("setIcon", "I got an error", e);
@@ -1260,7 +1271,7 @@ class DbOperations {
                 }
                 tableLastUpdate.lastUpdate = new Date().getTime();
                 permanentDao.updateTableLastUpdateRecord( tableLastUpdate );
-                updateDbInfo();
+                insertOrUpdateDbLastUpdate();
                 return;
             }
         }
@@ -1268,7 +1279,7 @@ class DbOperations {
         tableLastUpdate.tableName = tableName;
         tableLastUpdate.lastUpdate = new Date().getTime();
         permanentDao.insertTableLastUpdateRecord( tableLastUpdate );
-        updateDbInfo();
+        insertOrUpdateDbLastUpdate();
     }
     void delete_TableLastUpdate( String tableName ) {
         if( tableName == null ) {
@@ -1279,19 +1290,24 @@ class DbOperations {
         for( TableLastUpdate tableLastUpdate : tableLastUpdateList ) {
             if( tableLastUpdate.tableName.equals( tableName ) ) {
                 permanentDao.deleteTablesLastUpdate( tableLastUpdate );
-                updateDbInfo();
+                insertOrUpdateDbLastUpdate();
                 return;
             }
         }
     }
 
-    private void updateDbInfo() {
-        DatabaseInfo databaseInfo = permanentDao.getDatabaseInfo();
-        if( databaseInfo != null ) { //true
-            databaseInfo.lastUpdate = new Date().getTime();
-            permanentDao.updateDatabaseInfoRecord( databaseInfo );
+    private void insertOrUpdateDbLastUpdate() {
+        DatabaseLastUpdate databaseLastUpdate = permanentDao.getDatabaseLastUpdate();
+        if( databaseLastUpdate != null ) { //true
+            databaseLastUpdate.lastUpdate = new Date().getTime();
+            permanentDao.updateDatabaseLastUpdateRecord( databaseLastUpdate );
         } else {
-            Log.i("error", "updateDbInfo. No record");
+            databaseLastUpdate = new DatabaseLastUpdate();
+            databaseLastUpdate.lastUpdate = new Date().getTime();
+            permanentDao.insertDbLastUpdateRecord( databaseLastUpdate );
+            //Log.i("error", "updateDbLastUpdate. No record");
         }
+        connectToServer.start();
     }
+
 }

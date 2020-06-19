@@ -8,7 +8,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="fatal" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -18,7 +17,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="NB1GAD17B0302084" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_9_API_25" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -40,8 +39,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="Class" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,7 +58,14 @@
     <property name="settings.editor.selected.configurable" value="memory.settings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\android_projects\Advertise\admin\src\main\java\com\youssefdirani\advertise_admin" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.youssefdirani.advertise_admin" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.youssefdirani.advertise_admin.ui" />
       <recent name="com.youssefdirani.advertise_admin" />
       <recent name="com.youssefdirani.navmenu_admin" />
       <recent name="com.youssefdirani.navmenu_admin.ui" />
@@ -191,14 +197,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="465" y="222" width="439" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1590995931405">
+    <state x="465" y="222" width="439" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1592404672561">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="465" y="222" width="439" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1590995931405" />
+    <state x="465" y="222" width="439" height="290" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1592404672561" />
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1591103455056">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1591103455056" />
+    <state x="263" y="119" key="AndroidCreateResourceDirectoryDialog" timestamp="1592404506904">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="263" y="119" key="AndroidCreateResourceDirectoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1592404506904" />
     <state x="263" y="119" key="AndroidCreateResourceFileDialog" timestamp="1590999250431">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -207,22 +217,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590731375993" />
-    <state width="1323" height="280" key="GridCell.Tab.0.bottom" timestamp="1591159089435">
+    <state width="1323" height="222" key="GridCell.Tab.0.bottom" timestamp="1591604328033">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="280" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591159089435" />
-    <state width="1323" height="280" key="GridCell.Tab.0.center" timestamp="1591159089435">
+    <state width="1323" height="222" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591604328033" />
+    <state width="1323" height="222" key="GridCell.Tab.0.center" timestamp="1591604328033">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="280" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591159089435" />
-    <state width="1323" height="280" key="GridCell.Tab.0.left" timestamp="1591159089435">
+    <state width="1323" height="222" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591604328033" />
+    <state width="1323" height="222" key="GridCell.Tab.0.left" timestamp="1591604328032">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="280" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591159089435" />
-    <state width="1323" height="280" key="GridCell.Tab.0.right" timestamp="1591159089435">
+    <state width="1323" height="222" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591604328032" />
+    <state width="1323" height="222" key="GridCell.Tab.0.right" timestamp="1591604328033">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="280" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591159089435" />
+    <state width="1323" height="222" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591604328033" />
     <state x="339" y="162" key="run.anything.popup" timestamp="1590842521505">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
