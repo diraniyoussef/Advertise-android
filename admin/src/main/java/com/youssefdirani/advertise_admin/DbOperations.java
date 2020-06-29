@@ -133,21 +133,6 @@ class DbOperations {
                     }
                 }
             }
-/*
-            private boolean isTableExists( String tableName ) {
-                String query = "select DISTINCT tbl_name from sqlite_master where tbl_name = '"+tableName+"'";
-                try {
-                    Cursor cursor = db.query(query, null);
-                    if(cursor!=null) {
-                        return cursor.getCount() > 0;
-                    }
-                    return false;
-                } catch(Exception e) {
-                    Log.i("isTableExists", "Table " + tableName + " does not exist.");
-                    return false;
-                }
-            }
- */
 
             private void concatenateNavTableIndices( final int startingIndex, final int originalNavSize ) {//should be called whenever an entity is deleted (except for the last entity).
                 //finally it's ok to have e.g. 4 elements like the following indices 0 3 1 2
@@ -938,7 +923,7 @@ class DbOperations {
         db.beginTransaction(); //if you're thinking in using transaction : https://docs.oracle.com/javase/tutorial/jdbc/basics/transactions.html
         try {
             Log.i("deleteTable", "before deleting table " + tableName );
-            db.execSQL("DROP TABLE IF EXISTS " + tableName + ";");
+            db.execSQL("DROP TABLE IF EXISTS '" + tableName + "';");
             Log.i("deleteTable", "after deleting table " + tableName );
             delete_TableLastUpdate( tableName );
             db.setTransactionSuccessful(); //to commit

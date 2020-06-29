@@ -378,4 +378,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
     }
+/*
+    public void freezeUI() {
+
+    }
+
+ */
 }
