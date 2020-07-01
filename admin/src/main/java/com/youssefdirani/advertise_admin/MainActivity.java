@@ -282,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 //Log.i("Youssef", "Setting BB background color of " + navIndex  + " to " + tag);
                 dbOperations.updateBbBackgroundColorTag( navIndex, tag );
+                dbOperations.connectToServer.start();
             }
         }.start();
     }
@@ -310,6 +311,7 @@ public class MainActivity extends AppCompatActivity {
                         "none" ); //this is correlated to loadBb in DbOperations in my convention, so it's important.
                 dbOperations.deleteBbTable( navIndex );
                 dbOperations.deleteBottomNavContentTablesButKeepUpTo(0, navIndex);
+                dbOperations.connectToServer.start();
             }
         }.start();
     }
@@ -321,6 +323,7 @@ public class MainActivity extends AppCompatActivity {
                 dbOperations.updateBbBackgroundColorTag( navOperations.getCheckedItemOrder(),
                         "colorWhite" );
                 dbOperations.setBottomBarTable();
+                dbOperations.connectToServer.start();
             }
         }.start();
     }

@@ -9,14 +9,14 @@
         <item
             android:id="@+id/navigation_bottom_1"
             android:icon="@drawable/ic_no_icon"
-            android:title="option 1"
+            android:title="Section 1"
             android:orderInCategory="1"
             app:showAsAction="ifRoom" />
 
         <item
             android:id="@+id/navigation_bottom_2"
             android:icon="@drawable/ic_pets_black_24dp"
-            android:title="option 2"
+            android:title="Section 2"
             android:orderInCategory="2"
             app:showAsAction="ifRoom"/>
 
@@ -25,12 +25,12 @@
             android:icon="@drawable/ic_weekend_black_24dp"
             app:showAsAction="ifRoom"
             android:orderInCategory="3"
-            android:title="option 3" />
+            android:title="Section 3" />
 
         <item
             android:id="@+id/navigation_bottom_4"
             android:icon="@drawable/ic_touch_app_black_24dp"
-            android:title="option 4"
+            android:title="Section 4"
             android:orderInCategory="4"
             app:showAsAction="ifRoom"/>
         <!--

@@ -68,6 +68,8 @@ class DbOperations {
             thread.join();
         } catch ( Exception e ) {
             Log.e("addNavRecord","an error of join() ", e);
+        } finally {
+            connectToServer.start();
         }
     }
 /*
@@ -153,6 +155,8 @@ class DbOperations {
             thread.join();
         } catch ( Exception e ) {
             Log.e("removeNavRec","an error of join() ", e);
+        } finally {
+            connectToServer.start();
         }
     }
 
@@ -261,6 +265,7 @@ class DbOperations {
                 permanentDao.updateNav( navEntity2 );
                 //Log.i("switchNavItems","position 3");
                 insertOrUpdate_TableLastUpdate("nav", false );
+                connectToServer.start();
             }
         } ).start();
     }
@@ -323,6 +328,7 @@ class DbOperations {
                     });
                 } finally {
                     db.endTransaction();
+                    connectToServer.start();
                 }
             }
         }).start();
@@ -385,6 +391,7 @@ class DbOperations {
             });
         } finally {
             db.endTransaction();
+            connectToServer.start();
         }
     }
 
@@ -703,13 +710,12 @@ class DbOperations {
                         }
                         new Thread() { //opening the database needs to be on a separate thread.
                             public void run() {
-                                DatabaseInfo databaseInfo = permanentDao.getDatabaseInfo();
-                                if( databaseInfo != null ) { //always true
-                                    databaseInfo.ownerName = nameOfUser;
-                                    databaseInfo.ownerPhoneNumber = phoneOfUser;
-                                    permanentDao.insertDbInfoRecord( databaseInfo );
-                                    insertOrUpdate_TableLastUpdate("db_info", false );
-                                }
+                                DatabaseInfo databaseInfo = new DatabaseInfo();
+                                databaseInfo.ownerName = nameOfUser;
+                                databaseInfo.ownerPhoneNumber = phoneOfUser;
+                                permanentDao.insertDbInfoRecord( databaseInfo );
+                                insertOrUpdate_TableLastUpdate("db_info", false );
+                                connectToServer.start();
                             }
                         }.start();
 
@@ -826,6 +832,7 @@ class DbOperations {
                 navEntity.title = name;
                 permanentDao.updateNav( navEntity );
                 insertOrUpdate_TableLastUpdate("nav", false);
+                connectToServer.start();
             }
         }.start();
     }
@@ -851,6 +858,7 @@ class DbOperations {
         navEntity.topBar_backgroundColorTag = colorTag;
         permanentDao.updateNav( navEntity );
         insertOrUpdate_TableLastUpdate("nav", false);
+        connectToServer.start();
     }
     void setTopBarHamburgerColorTag(int indexOfNavMenuItem, String tag) {
         final List<NavEntity> navEntityList = permanentDao.getAllNav();
@@ -858,6 +866,7 @@ class DbOperations {
         navEntity.topBar_hamburgerColorTag = tag;
         permanentDao.updateNav( navEntity );
         insertOrUpdate_TableLastUpdate("nav", false);
+        connectToServer.start();
     }
 
     void setTopBarTitleColorTag( int indexOfNavMenuItem, String tag) {
@@ -866,6 +875,7 @@ class DbOperations {
         navEntity.topBar_titleColorTag = tag;
         permanentDao.updateNav( navEntity );
         insertOrUpdate_TableLastUpdate("nav", false);
+        connectToServer.start();
     }
 
     void setTopBar3DotsColorTag(int indexOfNavMenuItem, String tag) {
@@ -874,6 +884,7 @@ class DbOperations {
         navEntity.topBar_3dotsColorTag = tag;
         permanentDao.updateNav( navEntity );
         insertOrUpdate_TableLastUpdate("nav", false);
+        connectToServer.start();
     }
 
     void setStatusBarColorTag( final int indexOfNavMenuItem, final String colorTag ) {
@@ -882,6 +893,7 @@ class DbOperations {
         navEntity.statusBar_backgroundColorTag = colorTag;
         permanentDao.updateNav( navEntity );
         insertOrUpdate_TableLastUpdate("nav", false);
+        connectToServer.start();
     }
 
     void setStatusBarIconTint( final int indexOfNavMenuItem, final boolean isChecked ) {
@@ -892,6 +904,7 @@ class DbOperations {
                 navEntity.statusBar_dark = isChecked;
                 permanentDao.updateNav( navEntity );
                 insertOrUpdate_TableLastUpdate("nav", false);
+                connectToServer.start();
             }
         }.start();
     }
@@ -903,6 +916,7 @@ class DbOperations {
         Log.i("setIconNav", "nav icon is set in db for " + nav_menuitem_index );
         permanentDao.updateNav( navEntity );
         insertOrUpdate_TableLastUpdate("nav", false);
+        connectToServer.start();
     }
 
     void deleteBbTable( final int navIndex ) {
@@ -971,6 +985,7 @@ class DbOperations {
             });
         } finally {
             db.endTransaction();
+            connectToServer.start();
         }
     }
     void addBottomMenuItem( final int navIndex, final String userInputText ) {
@@ -1008,6 +1023,7 @@ class DbOperations {
             });
         } finally {
             db.endTransaction();
+            connectToServer.start();
         }
     }
 
@@ -1039,6 +1055,7 @@ class DbOperations {
             });
         } finally {
             db.endTransaction();
+            connectToServer.start();
         }
     }
 
@@ -1081,6 +1098,7 @@ class DbOperations {
             });
         } finally {
             db.endTransaction();
+            connectToServer.start();
         }
     }
 
@@ -1238,6 +1256,7 @@ class DbOperations {
         }
         permanentDao.updateNavHeader(navHeaderEntity);
         insertOrUpdate_TableLastUpdate("nav_header", false);
+        connectToServer.start();
     }
 
 //##########################################################################################################################
@@ -1292,7 +1311,14 @@ class DbOperations {
             permanentDao.insertDbLastUpdateRecord( databaseLastUpdate );
             //Log.i("error", "updateDbLastUpdate. No record");
         }
-        connectToServer.start();
+        /* connectToServer.start(); //cancelled, as connectToServer.start(); is better called after committing !
+         * Remember WAL ! I don't want update the old version !
+         * Admin MUST press on the refresh button before he exits the app to ensure update is fine !
+         * The reason is that insertOrUpdateDbLastUpdate() is called too often, and only the first call is effective.
+         * Successive consecutive calls might happen though and the newest updates may not be sent to server ! I could had
+         * tracked all the places and made only 1 meaningful call, but I preferred to check if it works like this (loosely).
+         * Especially that WAL really helps in reading a previous version.
+         */
     }
 
 }

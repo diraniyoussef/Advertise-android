@@ -84,7 +84,7 @@ class BottomNavOperations {
         //Now let's show the bottombar in coherence with DbOperations (especially addNavRecord method)
         setIconOfCheckedMenuItem( "ic_no_icon",0 );
         activity.setBottomBarBackgroundColor( "colorWhite" );
-        bottomMenu.getItem(0).setTitle("Option 1");
+        bottomMenu.getItem(0).setTitle("Section 1");
     }
 
 }
